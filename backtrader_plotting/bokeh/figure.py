@@ -185,7 +185,9 @@ class Figure(object):
         elif isinstance(obj, bt.observers.Observer):
             self.plot_observer(obj)
         else:
-            raise Exception(f"Unsupported plot object: {type(obj)}")
+            return
+            print(f'Pass plot object {type(obj)} for using PandasData (not fully tested)')
+            # raise Exception(f"Unsupported plot object: {type(obj)}")
 
         # first object can apply config
         if len(self.datas) == 0:

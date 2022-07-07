@@ -26,7 +26,8 @@ def _get_line_alias(line, owner):
         if curline is not line:
             continue
         return owner._getlinealias(idx)
-    raise RuntimeError('Could not find line in owner lines')
+    # raise RuntimeError('Could not find line in owner lines')
+    print(f'{line} could not find line in owner lines, which may lead to unwanted figures')
 
 
 def _label_datafeed(data):
@@ -45,7 +46,7 @@ def _label_datafeed(data):
             continue
         val = str(val)
 
-        if len(val) > 0:
+        if len(val) >= 0:
             labels.append(val)
             break
         else:
@@ -89,7 +90,10 @@ def label(obj, targets=True):
             prefix = label(obj._owner.data)
         else:
             prefix = obj._owner.plotlabel()
-        primary = prefix + '^' + _get_line_alias(obj, obj._owner)
+        if _get_line_alias(obj, obj._owner) is not None:
+            primary = prefix + '^' + _get_line_alias(obj, obj._owner)
+        else:
+            return str(obj)
     elif isinstance(obj, bt.MultiCoupler):
         primary = f'Coupler'
     elif isinstance(obj, (int, float)):  # scalar
