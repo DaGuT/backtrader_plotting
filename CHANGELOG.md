@@ -8,6 +8,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Fixes
 - Fixed paramval2str type error for non-str lists
 
+
 ## [2.0.0] - 2021.06.14
 ### Added
 - Live trading support (needs custom `backtrader`, see `README.md` for details)
